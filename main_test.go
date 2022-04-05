@@ -13,7 +13,10 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-const dbName = "playground"
+const (
+	dbName          = "playground"
+	migrationSource = "file://./resources/migrations/"
+)
 
 func runTest(t *testing.T) { // nolint: deadcode
 	t.Helper()

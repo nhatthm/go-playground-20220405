@@ -1,7 +1,9 @@
 DATABASE_DSN ?= mongodb://localhost:27017/test
 
 GO ?= go
+
 GO_MIGRATE_VERSION := v4.15.1
+MONGODB_VERSION := 4.4
 
 UNAME_S := $(shell uname -s)
 
@@ -34,6 +36,7 @@ bin/migrate:
 	@curl -sL https://github.com/golang-migrate/migrate/releases/download/$(GO_MIGRATE_VERSION)/migrate.$(OS)-$(ARCH).tar.gz | tar xz \
         && mv migrate bin/migrate
 
+.PHONY: migrations
 migrations: bin/migrate
 	@echo "$(OK_COLOR)==> Run migrations $(NO_COLOR)"
 	@bin/migrate -source=file://./resources/migrations/ -database=$(DATABASE_DSN) up
@@ -41,4 +44,9 @@ migrations: bin/migrate
 .PHONY: test-with-docker-compose
 test-with-docker-compose: migrations
 	@echo "$(OK_COLOR)==> Run test-with-docker-compose $(NO_COLOR)"
-	@$(GO) test -gcflags=-l -covermode=atomic -tags=test_with_docker_compose -race ./...
+	@$(GO) test -gcflags=-l -covermode=atomic -tags=test_with_docker_compose -race -v ./...
+
+.PHONY: test-with-testcontainers
+test-with-testcontainers:
+	@echo "$(OK_COLOR)==> Run test-with-testcontainers $(NO_COLOR)"
+	@$(GO) test -gcflags=-l -covermode=atomic -tags=test_with_testcontainers -race -v ./...
