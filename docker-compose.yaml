@@ -1,0 +1,12 @@
+version: "3"
+services:
+    mongo:
+        image: mongo:4.4
+        ports:
+            - "27017"
+        restart: always
+        healthcheck:
+            test: "mongo localhost:27017/test --quiet --eval 'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)'"
+            interval: 10s
+            timeout: 5s
+            retries: 5
