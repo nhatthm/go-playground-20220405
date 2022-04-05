@@ -3,12 +3,10 @@ module github.com/nhatthm/go-playground-20220405
 go 1.18
 
 require (
-	github.com/davecgh/go-spew v1.1.1
+	github.com/nhatthm/testcontainers-go-extra v0.1.0
 	github.com/nhatthm/testcontainers-go-registry v0.3.0
-	github.com/pmezard/go-difflib v1.0.0
 	github.com/stretchr/testify v1.7.1
 	go.mongodb.org/mongo-driver v1.8.4
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 )
 
 require (
@@ -18,6 +16,7 @@ require (
 	github.com/cenkalti/backoff/v4 v4.1.2 // indirect
 	github.com/containerd/cgroups v1.0.3 // indirect
 	github.com/containerd/containerd v1.6.2 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/docker/distribution v2.8.1+incompatible // indirect
 	github.com/docker/docker v20.10.14+incompatible // indirect
 	github.com/docker/go-connections v0.4.0 // indirect
@@ -37,11 +36,11 @@ require (
 	github.com/moby/sys/mountinfo v0.6.0 // indirect
 	github.com/moby/term v0.0.0-20210619224110-3f7ff695adc6 // indirect
 	github.com/morikuni/aec v1.0.0 // indirect
-	github.com/nhatthm/testcontainers-go-extra v0.1.0 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/opencontainers/image-spec v1.0.2 // indirect
 	github.com/opencontainers/runc v1.1.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/testcontainers/testcontainers-go v0.12.1-0.20220203161022-95e84a09f45e // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
@@ -58,4 +57,5 @@ require (
 	google.golang.org/genproto v0.0.0-20220401170504-314d38edb7de // indirect
 	google.golang.org/grpc v1.45.0 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
