@@ -30,5 +30,8 @@ func TestWithTestContainers(t *testing.T) {
 		assert.FailNow(t, "failed to start mongo container: %s", err.Error())
 	}
 
+	// =========================================================================
+	// Run tests
+	// =========================================================================
 	runTest(t)
 }

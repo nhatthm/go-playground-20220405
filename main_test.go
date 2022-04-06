@@ -13,7 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// nolint: deadcode
+// nolint: deadcode,varcheck
 const (
 	dbName          = "playground"
 	migrationSource = "file://./resources/migrations/"
