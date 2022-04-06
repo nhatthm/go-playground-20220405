@@ -1,5 +1,8 @@
 # Playground 20220405
 
+[![test-with-docker-compose](https://github.com/nhatthm/go-playground-20220405/actions/workflows/test-with-docker-compose.yaml/badge.svg)](https://github.com/nhatthm/go-playground-20220405/actions/workflows/test-with-docker-compose.yaml)
+[![test-with-testcontainers](https://github.com/nhatthm/go-playground-20220405/actions/workflows/test-with-testcontainers.yaml/badge.svg)](https://github.com/nhatthm/go-playground-20220405/actions/workflows/test-with-testcontainers.yaml)
+
 A showcase of differences between `docker-compose` and `testcontainers`.
 
 ## Table of Contents
