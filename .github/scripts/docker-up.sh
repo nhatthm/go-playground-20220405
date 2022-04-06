@@ -2,7 +2,7 @@
 
 DOCKER_COMPOSE="docker-compose.yaml"
 RETRY_COUNT=15
-RETRY_TIMEOUT=5
+RETRY_TIMEOUT=10
 
 echo "=> Starting services"
 docker-compose -f "$DOCKER_COMPOSE" -p "$GITHUB_SHA" up --remove-orphans --build -d
