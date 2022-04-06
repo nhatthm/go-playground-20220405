@@ -43,8 +43,10 @@ jobs:
 
       - name: Test
         id: test
+        env:
+          MONGO_DSN: "mongodb://localhost:${{ env.MONGO_27017_PORT }}/playground"
         run: |
-          make test-with-docker-compose DATABASE_DSN="mongodb://localhost:${{ env.MONGO_27017_PORT }}/playground"
+          make test-with-docker-compose DATABASE_DSN="$MONGO_DSN"
 
       - name: Stop containers
         if: always()
