@@ -6,7 +6,7 @@ require (
 	github.com/nhatthm/testcontainers-go-extra v0.1.0
 	github.com/nhatthm/testcontainers-go-registry v0.3.0
 	github.com/stretchr/testify v1.7.1
-	go.mongodb.org/mongo-driver v1.8.4
+	go.mongodb.org/mongo-driver v1.9.0
 )
 
 require (
