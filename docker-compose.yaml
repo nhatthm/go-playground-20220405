@@ -3,7 +3,7 @@ services:
     mongo:
         image: mongo:${MONGO_VERSION:-4.4}
         ports:
-            - "27017"
+            - "${MONGO_PORT}:27017"
         restart: always
         healthcheck:
             test: "mongo localhost:27017/test --quiet --eval 'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)'"

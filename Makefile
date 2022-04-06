@@ -33,7 +33,7 @@ WARN_COLOR=\033[33;01m
 bin/migrate:
 	@echo "$(OK_COLOR)==> Install bin/migrate $(NO_COLOR)"
 	@test -d bin || mkdir bin
-	@curl -sL https://github.com/golang-migrate/migrate/releases/download/$(GO_MIGRATE_VERSION)/migrate.$(OS)-$(ARCH).tar.gz | tar xz \
+	@curl -sL https://github.com/golang-migrate/migrate/releases/download/$(GO_MIGRATE_VERSION)/migrate.$(OS)-$(ARCH).tar.gz | tar xz migrate \
         && mv migrate bin/migrate
 
 .PHONY: migrations
@@ -50,3 +50,7 @@ test-with-docker-compose: migrations
 test-with-testcontainers:
 	@echo "$(OK_COLOR)==> Run test-with-testcontainers $(NO_COLOR)"
 	@$(GO) test -gcflags=-l -covermode=atomic -tags=test_with_testcontainers -race -v ./...
+
+.PHONY: clean
+clean:
+	@rm -rf bin
