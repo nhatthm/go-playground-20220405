@@ -20,7 +20,7 @@ A showcase of differences between `docker-compose` and `testcontainers`.
 Run
 
 ```bash
-MONGO_PORT=27017 docker compose up -d
+docker compose up -d
 make test-with-docker-compose DATABASE_DSN=mongodb://localhost:27017/playground
 docker compose down
 ```

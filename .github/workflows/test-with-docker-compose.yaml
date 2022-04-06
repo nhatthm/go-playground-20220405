@@ -39,6 +39,7 @@ jobs:
       - name: Start containers
         env:
           MONGO_VERSION: "${{ matrix.mongo-version }}"
+          MONGO_PORT: "27017"
         run: .github/scripts/docker-up.sh
 
       - name: Test
