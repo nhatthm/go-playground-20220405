@@ -1,5 +1,8 @@
 name: test-with-testcontainers
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:

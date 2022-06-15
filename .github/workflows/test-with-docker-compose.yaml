@@ -1,5 +1,8 @@
 name: test-with-docker-compose
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:

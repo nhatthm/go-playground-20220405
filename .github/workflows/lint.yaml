@@ -1,4 +1,8 @@
 name: lint
+
+permissions:
+  contents: read
+
 on:
   push:
     tags:
@@ -7,6 +11,7 @@ on:
       - master
       - main
   pull_request:
+
 jobs:
   lint:
     name: lint
