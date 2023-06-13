@@ -1,6 +1,9 @@
 # See https://github.com/golangci/golangci-lint/blob/master/.golangci.example.yml
 run:
   tests: true
+  build-tags:
+    - test_with_docker_compose
+    - test_with_testcontainers
 
 linters-settings:
   errcheck:
@@ -21,6 +24,8 @@ linters:
   enable-all: true
   disable:
     - contextcheck
+    - deadcode
+    - depguard
     - exhaustivestruct
     - forbidigo
     - forcetypeassert
@@ -35,11 +40,16 @@ linters:
     - ireturn
     - lll
     - maligned
+    - nosnakecase
     - paralleltest
+    - rowserrcheck
     - scopelint
+    - structcheck
     - tagliatelle
     - testpackage
+    - wastedassign
     - wrapcheck
+    - varcheck
     - varnamelen
 
 issues:

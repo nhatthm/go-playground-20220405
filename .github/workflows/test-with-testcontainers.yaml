@@ -8,6 +8,7 @@ on:
     branches:
       - master
   pull_request:
+  workflow_dispatch:
 
 env:
   GO111MODULE: "on"
@@ -21,9 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v4
         with:
-          go-version: 1.18.x
+          go-version: 1.20.x
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Go cache
@@ -38,6 +39,8 @@ jobs:
           key: ${{ runner.os }}-go-${{ env.GITHUB_JOB }}-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-${{ env.GITHUB_JOB }}-${{ hashFiles('**/go.sum') }}
+      - run: |
+          go mod vendor
 
       - name: Test
         id: test

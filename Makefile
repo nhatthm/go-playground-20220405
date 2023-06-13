@@ -2,8 +2,12 @@ DATABASE_DSN ?= mongodb://localhost:27017/test
 
 GO ?= go
 
+GOLANGCI_LINT_VERSION ?= v1.51.1
 GO_MIGRATE_VERSION := v4.15.1
 MONGODB_VERSION := 4.4
+
+GOLANGCI_LINT ?= $(shell go env GOPATH)/bin/golangci-lint-$(GOLANGCI_LINT_VERSION)
+GO_MIGRATE ?= $(shell go env GOPATH)/bin/migrate-$(GO_MIGRATE_VERSION)
 
 UNAME_S := $(shell uname -s)
 
@@ -30,16 +34,14 @@ OK_COLOR=\033[32;01m
 ERROR_COLOR=\033[31;01m
 WARN_COLOR=\033[33;01m
 
-bin/migrate:
-	@echo "$(OK_COLOR)==> Install bin/migrate $(NO_COLOR)"
-	@test -d bin || mkdir bin
-	@curl -sL https://github.com/golang-migrate/migrate/releases/download/$(GO_MIGRATE_VERSION)/migrate.$(OS)-$(ARCH).tar.gz | tar xz migrate \
-        && mv migrate bin/migrate
+.PHONY: lint
+lint: $(GOLANGCI_LINT)
+	@$(GOLANGCI_LINT) run -c .golangci.yaml
 
 .PHONY: migrations
-migrations: bin/migrate
+migrations: $(GO_MIGRATE)
 	@echo "$(OK_COLOR)==> Run migrations $(NO_COLOR)"
-	@bin/migrate -source=file://./resources/migrations/ -database=$(DATABASE_DSN) up
+	@$(GO_MIGRATE) -source=file://./resources/migrations/ -database=$(DATABASE_DSN) up
 
 .PHONY: test-with-docker-compose
 test-with-docker-compose: migrations
@@ -54,3 +56,13 @@ test-with-testcontainers:
 .PHONY: clean
 clean:
 	@rm -rf bin
+
+$(GO_MIGRATE):
+	@echo "$(OK_COLOR)==> Install migrate $(GO_MIGRATE_VERSION)$(NO_COLOR)"
+	@curl -sL https://github.com/golang-migrate/migrate/releases/download/$(GO_MIGRATE_VERSION)/migrate.$(OS)-$(ARCH).tar.gz | tar xz migrate \
+        && mv migrate $(GO_MIGRATE)
+
+$(GOLANGCI_LINT):
+	@echo "$(OK_COLOR)==> Installing golangci-lint $(GOLANGCI_LINT_VERSION)$(NO_COLOR)"; \
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b ./bin "$(GOLANGCI_LINT_VERSION)"
+	@mv ./bin/golangci-lint $(GOLANGCI_LINT)

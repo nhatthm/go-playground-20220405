@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nhatthm/testcontainers-go-extra"
-	"github.com/nhatthm/testcontainers-go-registry/database/mongo"
 	"github.com/stretchr/testify/assert"
+	"go.nhat.io/testcontainers-extra"
+	"go.nhat.io/testcontainers-registry/mongo"
 )
 
 func TestWithTestContainers(t *testing.T) {

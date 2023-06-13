@@ -3,6 +3,7 @@ package playground20220405_test
 import (
 	"context"
 	"fmt"
+	"net"
 	"os"
 	"testing"
 	"time"
@@ -13,18 +14,18 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// nolint: deadcode,varcheck
+// nolint: deadcode,varcheck,nolintlint
 const (
 	dbName          = "playground"
 	migrationSource = "file://./resources/migrations/"
 )
 
-func runTest(t *testing.T) { // nolint: deadcode
+func runTest(t *testing.T) { //nolint: deadcode
 	t.Helper()
 
 	dbHost := getEnv("MONGO_27017_HOST", "localhost")
 	dbPort := getEnv("MONGO_27017_PORT", "27017")
-	dsn := fmt.Sprintf("mongodb://%s:%s", dbHost, dbPort)
+	dsn := fmt.Sprintf("mongodb://%s", net.JoinHostPort(dbHost, dbPort))
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
@@ -34,7 +35,7 @@ func runTest(t *testing.T) { // nolint: deadcode
 		assert.FailNowf(t, "failed to connect to mongo: %s", err.Error())
 	}
 
-	defer client.Disconnect(context.Background()) // nolint: errcheck,contextcheck
+	defer client.Disconnect(context.Background()) //nolint: errcheck,contextcheck
 
 	db := client.Database(dbName)
 	col := db.Collection("customer")
