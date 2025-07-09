@@ -15,7 +15,7 @@ import (
 func TestWithTestContainers(t *testing.T) {
 	t.Parallel()
 
-	mongoVersion := getEnv("MONGO_VERSION", "4.4")
+	mongoVersion := getEnv("MONGO_VERSION", "6.0")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()

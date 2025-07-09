@@ -1,4 +1,4 @@
-DATABASE_DSN ?= mongodb://localhost:27017/test
+DATABASE_DSN ?= mongodb://localhost:27017/playground
 
 GO ?= go
 
@@ -56,6 +56,7 @@ test-with-testcontainers:
 .PHONY: clean
 clean:
 	@rm -rf bin
+
 
 $(GO_MIGRATE):
 	@echo "$(OK_COLOR)==> Install migrate $(GO_MIGRATE_VERSION)$(NO_COLOR)"
