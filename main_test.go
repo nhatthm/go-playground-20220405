@@ -14,7 +14,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// nolint: deadcode,varcheck,nolintlint
+// nolint: nolintlint
 const (
 	dbName          = "playground"
 	migrationSource = "file://./resources/migrations/"

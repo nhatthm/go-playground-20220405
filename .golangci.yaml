@@ -1,68 +1,67 @@
-# See https://github.com/golangci/golangci-lint/blob/master/.golangci.example.yml
+version: "2"
 run:
-  tests: true
   build-tags:
     - test_with_docker_compose
     - test_with_testcontainers
-
-linters-settings:
-  errcheck:
-    check-type-assertions: true
-    check-blank: true
-  gocyclo:
-    min-complexity: 20
-  dupl:
-    threshold: 100
-  misspell:
-    locale: US
-  unused:
-    check-exported: false
-  unparam:
-    check-exported: true
-
+  tests: true
 linters:
-  enable-all: true
+  default: all
   disable:
     - contextcheck
-    - deadcode
     - depguard
-    - exhaustivestruct
+    - err113
     - forbidigo
     - forcetypeassert
-    - gci
     - gochecknoglobals
-    - golint
     - gomoddirectives
-    - gomnd
-    - goerr113
-    - ifshort
-    - interfacer
     - ireturn
     - lll
-    - maligned
-    - nosnakecase
+    - mnd
     - paralleltest
+    - perfsprint
     - rowserrcheck
-    - scopelint
-    - structcheck
     - tagliatelle
     - testpackage
+    - varnamelen
     - wastedassign
     - wrapcheck
-    - varcheck
-    - varnamelen
-
-issues:
-  exclude-use-default: false
-  exclude-rules:
-    - linters:
-        - containedctx
-        - dupl
-        - funlen
-        - goconst
-        - goerr113
-        - gomnd
-        - maintidx
-        - noctx
-        - rowserrcheck
-      path: "_test.go"
+    - wsl
+  settings:
+    dupl:
+      threshold: 100
+    errcheck:
+      check-type-assertions: true
+      check-blank: true
+    gocyclo:
+      min-complexity: 20
+    misspell:
+      locale: US
+  exclusions:
+    generated: lax
+    rules:
+      - linters:
+          - containedctx
+          - dupl
+          - err113
+          - funlen
+          - goconst
+          - maintidx
+          - mnd
+          - noctx
+          - rowserrcheck
+        path: _test.go
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

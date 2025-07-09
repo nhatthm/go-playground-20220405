@@ -2,7 +2,7 @@ DATABASE_DSN ?= mongodb://localhost:27017/playground
 
 GO ?= go
 
-GOLANGCI_LINT_VERSION ?= v1.51.1
+GOLANGCI_LINT_VERSION ?= v2.2.1
 GO_MIGRATE_VERSION := v4.15.1
 MONGODB_VERSION := 4.4
 

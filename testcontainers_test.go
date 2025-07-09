@@ -4,6 +4,7 @@ package playground20220405_test
 
 import (
 	"context"
+	"fmt"
 	"testing"
 	"time"
 
@@ -27,7 +28,7 @@ func TestWithTestContainers(t *testing.T) {
 		testcontainers.WithImageTag(mongoVersion),
 	)
 	if err != nil {
-		assert.FailNow(t, "failed to start mongo container: %s", err.Error())
+		assert.FailNow(t, fmt.Sprintf("failed to start mongo container: %s", err.Error()))
 	}
 
 	// =========================================================================
